@@ -48,6 +48,28 @@ cdef class State:
     Notes:
         * rich comparisons 
         * hashable
+
+    The doctest below illustrates something important about manipulating states:
+
+    >>> a = State()
+    >>> b = State()
+    >>> a == b
+    True
+    >>> a is b
+    False
+    >>> # if you write
+    >>> a = b  
+    >>> # then a is b
+    >>> a is b
+    True
+    >>> # if you mean to swap states, you should write
+    >>> a = State()
+    >>> b = State()
+    >>> a, b = b, a
+    >>> a == b
+    True
+    >>> a is b
+    False
     """
 
     cdef _kenlm.State _c_state
